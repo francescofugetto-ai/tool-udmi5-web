@@ -1,0 +1,718 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="UDMI5">
+<meta name="theme-color" content="#FAF9F7">
+<script data-iphone="sentinella">
+(function(){
+var h=document.documentElement, msg="";
+function ha(c){ return (" "+h.className+" ").indexOf(" "+c+" ")>=0; }
+// L'errore puo' arrivare prima che l'avviso esista — uno script in <head> che
+// non si lascia leggere —: il messaggio si tiene da parte e si scrive quando
+// la pagina c'e'.
+function scrivi(){
+  var e=document.getElementById("nmerr");
+  if(e&&msg) e.textContent="Errore del motore: "+msg;
+}
+function ko(m){
+  if(m&&!msg) msg=m;
+  if(!ha("motore-ko")) h.className+=" motore-ko";
+  scrivi();
+}
+h.className+=" js";
+window.onerror=function(m,src,riga,col){
+  m=String(m);
+  if(/^Script error\.?$/.test(m)) m="il browser non ne mostra il dettaglio (\u00abScript error.\u00bb)";
+  ko(m+(riga?" (riga "+riga+(col?", colonna "+col:"")+")":""));
+};
+document.addEventListener("DOMContentLoaded",function(){
+  if(!ha("motore-ok")) ko(msg||"il motore non ha completato l'avvio"); else scrivi();
+});
+})();
+</script>
+<title>Classificazione dell'infarto — Quinta definizione universale</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --bg:#FAF9F7; --surface:#FFFFFF; --surface-alt:#F3F2EF;
+    --border:rgba(11,11,11,0.10); --border-strong:rgba(11,11,11,0.18);
+    --text-primary:#0B0B0B; --text-secondary:#52514E; --text-muted:#76746F;
+    --accent-blue:#2A78D6;   --accent-blue-bg:#E6F1FB;   --accent-blue-border:#B5D4F4;
+    --accent-amber:#BA7517;  --accent-amber-bg:#FAEEDA;  --accent-amber-border:#FAC775;
+    --accent-red:#A32D2D;    --accent-red-bg:#FCEBEB;    --accent-red-border:#F7C1C1;
+    /* il colore e' il livello di certezza dell'infarto */
+    --k1:#8A6A00; --k1-bg:#FBF3C8; --k1-bd:#EBD56C;
+    --k3:#B45309; --k3-bg:#FDEBD8; --k3-bd:#F4BD85;
+    --k2:#A32D2D; --k2-bg:#FCE3E3; --k2-bd:#F0A9A9;
+    --k9:#2A78D6; --k9-bg:#E3EFFB; --k9-bd:#A9CBF1;
+    --grid:rgba(42,120,214,.08);
+    --font:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --display:'IBM Plex Sans Condensed','Arial Narrow',-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Consolas,'Courier New',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#111418; --surface:#181C22; --surface-alt:#20252D;
+      --border:rgba(255,255,255,.10); --border-strong:rgba(255,255,255,.19);
+      --text-primary:#E7EAEE; --text-secondary:#B8BEC7; --text-muted:#949BA5;
+      --accent-blue:#72AAEE;   --accent-blue-bg:#18283A;   --accent-blue-border:#2E4B6C;
+      --accent-amber:#E3A94F;  --accent-amber-bg:#30250F;  --accent-amber-border:#5D4719;
+      --accent-red:#EF8E8E;    --accent-red-bg:#361B1B;    --accent-red-border:#6B3232;
+      --k1:#EDD36A; --k1-bg:#2C260C; --k1-bd:#5E5120;
+      --k3:#F3B27A; --k3-bg:#33210F; --k3-bd:#6B4524;
+      --k2:#F29A9A; --k2-bg:#361B1B; --k2-bd:#6B3232;
+      --k9:#8EC0F5; --k9-bg:#16283C; --k9-bd:#2F5378;
+      --grid:rgba(114,170,238,.07);
+      color-scheme:dark;
+    }
+  }
+  body { font-family:var(--font); background:var(--bg); color:var(--text-primary); font-size:14.5px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  .page { max-width:920px; margin:0 auto; padding:0 16px 4rem; }
+  strong, b { font-weight:600; }
+  .muted { color:var(--text-muted); }
+  .hero { margin:0 -16px 0; padding:2.2rem 16px 1.3rem; border-bottom:1px solid var(--border);
+          background-color:var(--bg);
+          background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+          background-size:22px 22px; }
+  .kicker { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-blue); margin-bottom:8px; }
+  .headline { font-family:var(--display); font-size:30px; font-weight:700; line-height:1.12; margin-bottom:10px; }
+  .lede { font-size:14.5px; color:var(--text-secondary); max-width:720px; margin-bottom:12px; }
+  .lede strong { color:var(--text-primary); }
+  .meta-row { display:flex; flex-wrap:wrap; gap:6px 8px; font-size:12px; }
+  .meta-chip { background:var(--surface); border:1px solid var(--border-strong); border-radius:99px; padding:2px 10px; color:var(--text-secondary); overflow-wrap:anywhere; }
+  .meta-chip strong { color:var(--text-primary); }
+  .bar { position:-webkit-sticky; position:-webkit-sticky;position:sticky; top:0; z-index:30; background:var(--bg); border-bottom:1px solid var(--border-strong);
+         margin:0 -16px 1.2rem; padding:8px 16px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
+  .bar .lbl { font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+  .bar .sp { flex:1 1 auto; }
+  .btn { font:600 12.5px var(--font); padding:6px 13px; border-radius:99px; border:1px solid var(--border-strong); background:var(--surface); color:var(--text-secondary); cursor:pointer; }
+  .btn:hover { border-color:var(--accent-blue); color:var(--accent-blue); }
+  .stage { display:flex; align-items:baseline; gap:10px; margin:2rem 0 .7rem; padding-bottom:6px; border-bottom:2px solid var(--border-strong); }
+  .stage-n { font-family:var(--mono); font-size:12px; font-weight:600; color:#FFFFFF; background:var(--accent-blue); border-radius:6px; padding:1px 7px; }
+  .stage-t { font-family:var(--display); font-size:20px; font-weight:700; line-height:1.2; }
+  .stage-w { margin-left:auto; font-size:11.5px; color:var(--text-muted); text-align:right; }
+  .card { background:var(--surface); border:1px solid var(--border-strong); border-radius:12px; padding:14px 16px; margin-bottom:12px; }
+  .card h3 { font-size:13px; font-weight:600; letter-spacing:.02em; margin-bottom:8px; color:var(--text-secondary); }
+  .row { display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; margin-bottom:10px; }
+  .row:last-child { margin-bottom:0; }
+  .fl { font-size:12.5px; font-weight:600; color:var(--text-secondary); min-width:150px; }
+  input[type=number], select { font:500 15px var(--font); color:var(--text-primary); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:6px 9px; }
+  input[type=number] { width:96px; text-align:center; }
+  select { max-width:100%; }
+  .seg { display:inline-flex; flex-wrap:wrap; border:1px solid var(--border-strong); border-radius:10px; overflow:hidden; }
+  .seg label { position:relative; cursor:pointer; }
+  .seg input { position:absolute; opacity:0; width:1px; height:1px; }
+  .seg span { display:block; padding:6px 13px; font-size:13.5px; font-weight:500; color:var(--text-secondary); border-right:1px solid var(--border); }
+  .seg label:last-child span { border-right:none; }
+  .seg input:checked + span { background:var(--text-primary); color:var(--bg); }
+  .seg input:focus-visible + span { outline:2px solid var(--accent-blue); outline-offset:-2px; }
+  .opz { display:flex; flex-direction:column; gap:0; }
+  .chk { display:flex; align-items:flex-start; gap:9px; padding:6px 0; font-size:14px; line-height:1.45; border-bottom:1px dashed var(--border); cursor:pointer; }
+  .chk:last-child { border-bottom:none; }
+  .chk input { margin-top:3px; width:17px; height:17px; flex:0 0 auto; accent-color:var(--accent-blue); }
+  .chk small { display:block; color:var(--text-muted); font-size:12px; }
+  .hide { display:none !important; }
+  .esito { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; }
+  .big { font-family:var(--display); font-size:30px; font-weight:700; line-height:1.1; }
+  .codice { font-family:var(--mono); font-size:20px; font-weight:600; }
+  .cat { display:inline-block; font-size:13px; font-weight:600; border-radius:99px; padding:3px 11px; border:1px solid; }
+  .k1 { color:var(--k1); background:var(--k1-bg); border-color:var(--k1-bd); }
+  .k2 { color:var(--k2); background:var(--k2-bg); border-color:var(--k2-bd); }
+  .k3 { color:var(--k3); background:var(--k3-bg); border-color:var(--k3-bd); }
+  .k9 { color:var(--k9); background:var(--k9-bg); border-color:var(--k9-bd); }
+  .kx { color:var(--text-muted); background:var(--surface-alt); border-color:var(--border-strong); }
+  .why { font-size:13px; color:var(--text-secondary); }
+  .nota { border-left:3px solid var(--accent-amber); background:var(--accent-amber-bg); border-radius:0 8px 8px 0; padding:8px 12px; margin-top:10px; font-size:13.5px; }
+  .nota.info { border-left-color:var(--accent-blue); background:var(--accent-blue-bg); }
+  .nota.stop { border-left-color:var(--accent-red); background:var(--accent-red-bg); }
+  .nota strong { color:var(--text-primary); }
+  .scala { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .scala span { font-size:12px; font-weight:600; border-radius:6px; padding:2px 9px; border:1px solid var(--border-strong); color:var(--text-muted); background:var(--surface-alt); }
+  .scala span.on { outline:2px solid var(--text-primary); outline-offset:1px; }
+  .passo { display:flex; gap:10px; padding:9px 0; border-bottom:1px dashed var(--border); }
+  .passo:last-child { border-bottom:none; }
+  .passo .ico { flex:0 0 22px; font-weight:700; color:var(--accent-blue); text-align:center; }
+  .passo .tx { flex:1 1 auto; font-size:14px; }
+  .pg { font-family:var(--mono); font-size:11px; color:var(--text-muted); white-space:nowrap; }
+  @media (max-width:640px) {
+    .headline { font-size:25px; }
+    .stage-w { display:none; }
+    .fl { min-width:0; width:100%; }
+    .big { font-size:24px; }
+  }
+  .limiti li { margin:4px 0 4px 18px; font-size:13.5px; }
+  .foot { margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--border-strong); font-size:12px; color:var(--text-muted); line-height:1.7; }
+  .foot strong { color:var(--text-secondary); }
+  @media print { .bar { position:static; } }
+</style>
+<style data-iphone="stile">
+/* L'avviso e' visibile per costruzione: lo nasconde solo la classe che la
+   sentinella mette quando JavaScript esiste, e lo rimostra quando il motore
+   muore. Nell'anteprima dell'iPhone nessuna delle due arriva. */
+#nomotore{background:#FCEBEB;border:1.5px solid #A32D2D;border-radius:10px;
+ padding:12px 15px;margin:0 0 1.1rem;font-size:13.5px;line-height:1.6;color:#0B0B0B;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+#nomotore strong{display:block;color:#A32D2D;font-size:15px;margin-bottom:4px}
+#nomotore p{margin:6px 0 0}
+#nomotore a{color:#A32D2D}
+#nomotore .nmurl{font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:.92em;word-break:break-all}
+#nomotore .nmerr{display:block;font-family:'SFMono-Regular',Consolas,Menlo,monospace;
+ font-size:11.5px;color:#A32D2D;margin-top:6px;word-break:break-word}
+#nomotore .nmerr:empty{display:none}
+html.js #nomotore{display:none}
+html.js.motore-ko #nomotore{display:block}
+
+#nmprivacy{background:#E2F4F5;border:1px solid #A7DBDE;border-radius:8px;padding:9px 13px;
+ margin:0 0 1rem;font-size:12.5px;line-height:1.55;color:#0B0B0B;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+@media print{#nmprivacy{display:none}}
+</style>
+</head>
+<body>
+<div class="nomotore" id="nomotore" role="alert">
+ <strong>Motore di calcolo non attivo</strong>
+ <p>I calcoli, i filtri e i comandi di questa pagina <b>non funzionano</b>: dove leggi «—» non c'è un
+ valore. Il testo resta leggibile, i numeri che dipendono dai tuoi dati no. Non usare questa pagina
+ per decidere una dose.</p>
+ <p>Su iPhone e iPad succede sempre con un file salvato sul telefono: si apre nell'<b>anteprima</b> —
+ dall'app File, da Mail, da WhatsApp —, che mostra la pagina ma non esegue il motore, e Apple non
+ permette di aprirlo in Safari. Sull'iPhone il tool funziona aperto da questo indirizzo, in Safari: <a class="nmurl" href="https://francescofugetto-ai.github.io/tool-udmi5-web/">https://francescofugetto-ai.github.io/tool-udmi5-web/</a> — poi Condividi, «Aggiungi alla schermata Home». Dopo la prima apertura funziona anche senza rete. Su computer e Android basta aprire il file.</p>
+ <span class="nmerr" id="nmerr"></span>
+</div>
+<div class="nmprivacy" id="nmprivacy">
+ <b>Quello che scrivi resta su questo dispositivo.</b> La pagina non invia niente in rete e non
+ salva niente: nessun dato esce da qui. Per la stessa ragione, <b>chiudendola il contenuto si
+ perde</b> — copia il referto dove ti serve prima di chiudere.
+</div>
+<div class="page">
+
+<header class="hero">
+  <div class="kicker">Strumento · Infarto miocardico · Quinta UDMI 2026</div>
+  <h1 class="headline">Classificazione dell'infarto — categoria, livello di certezza e codice ICD-11</h1>
+  <p class="lede"><strong>Come si usa.</strong> Scegli il <strong>contesto</strong> in cui è nato il sospetto, poi rispondi ai passi che compaiono: troponina, ECG, criteri clinici, angiografia e imaging cardiaco. L'esito dice la <strong>categoria</strong> (primario, secondario, procedura-correlato), il <strong>livello</strong> — considerato, probabile, confermato, escluso — il <strong>codice ICD-11</strong> e che cosa manca per salire di livello. <strong>Azzera</strong>, in alto, ricomincia.</p>
+  <div class="meta-row">
+    <span class="meta-chip"><strong>Fonte</strong> Fifth Universal Definition of Myocardial Infarction (2026) · ESC/ACC/AHA/WHF · Eur Heart J 2026</span>
+    <span class="meta-chip"><strong>Da</strong> Box 1–5, 7 · Fig. 2, 4, 6, 8 · Tab. 4</span>
+  </div>
+</header>
+
+<div class="bar" id="bar" aria-live="polite">
+  <span class="lbl">Esito</span> <span id="barCat" class="cat kx">—</span>
+  <span class="lbl">ICD-11</span> <span id="barCod" class="cat kx">—</span>
+  <span class="sp"></span>
+  <button class="btn" id="azzera" type="button">Azzera</button>
+</div>
+
+<!-- ═══ PASSO 1 ═══ -->
+<div class="stage"><span class="stage-n">1</span><span class="stage-t">Il contesto</span><span class="stage-w">§ 7.2 · p. 10 · Fig. 1</span></div>
+<div class="card">
+  <div class="opz">
+    <label class="chk"><input type="radio" name="ctx" value="spont"><span><strong>Presentazione spontanea</strong><small>nessuna condizione acuta alternativa e nessuna procedura cardiaca ha scatenato il quadro</small></span></label>
+    <label class="chk"><input type="radio" name="ctx" value="sec"><span><strong>Condizione acuta alternativa</strong> con squilibrio fra apporto e domanda di ossigeno<small>ridotto apporto: ipotensione, ipossia, anemia · aumentata domanda: tachicardia, ipertensione severa</small></span></label>
+    <label class="chk"><input type="radio" name="ctx" value="proc"><span><strong>Dopo una procedura cardiaca</strong><small>coronarografia con o senza intervento, intervento strutturale, ablazione, cardiochirurgia aperta o mininvasiva</small></span></label>
+    <label class="chk"><input type="radio" name="ctx" value="morte"><span><strong>Morte improvvisa</strong></span></label>
+    <label class="chk"><input type="radio" name="ctx" value="silente"><span><strong>Reperto occasionale</strong> in chi non ha una storia di infarto<small>onde Q patologiche a un ECG di routine, oppure cinetica o cicatrice trovate con un imaging fatto per altro</small></span></label>
+    <label class="chk"><input type="radio" name="ctx" value="risorse"><span><strong>Risorse limitate</strong>: né biomarcatori né imaging cardiaco disponibili</span></label>
+  </div>
+</div>
+
+<!-- ═══ PROCEDURA ═══ -->
+<div id="blkProc" class="hide">
+<div class="stage"><span class="stage-n">1b</span><span class="stage-t">La procedura</span><span class="stage-w">§ 7.2.3 · pp. 16, 19</span></div>
+<div class="card">
+  <div class="row">
+    <span class="fl">Via</span>
+    <span class="seg">
+      <label><input type="radio" name="via" value="B"><span>Percutanea</span></label>
+      <label><input type="radio" name="via" value="C"><span>Chirurgica aperta</span></label>
+    </span>
+  </div>
+  <div class="row">
+    <label class="fl" for="giorni">Giorni dalla procedura</label>
+    <input type="number" id="giorni" min="0" step="1" inputmode="numeric">
+  </div>
+  <label class="chk"><input type="checkbox" id="pSosp"><span>Complicanza coronarica <strong>sospetta</strong> (immediata, oppure comparsa nei giorni successivi)</span></label>
+  <label class="chk"><input type="checkbox" id="pDurante"><span>La complicanza è insorta <strong>durante la procedura</strong>, oppure la procedura è stata eseguita <strong>in corso di infarto acuto</strong><small>in questi due casi, per confermare, servono sia l'angiografia sia l'imaging</small></span></label>
+  <label class="chk"><input type="checkbox" id="pNonCorr"><span>L'evento <strong>non c'entra</strong> con la procedura<small>un infarto nei 30 giorni può anche essere indipendente dalla procedura</small></span></label>
+</div>
+</div>
+
+<!-- ═══ MORTE IMPROVVISA ═══ -->
+<div id="blkMorte" class="hide">
+<div class="stage"><span class="stage-n">2</span><span class="stage-t">Morte improvvisa</span><span class="stage-w">§ 8 · Fig. 8 · p. 19</span></div>
+<div class="card">
+  <div class="row">
+    <span class="fl">Valutazione prima della morte</span>
+    <span class="seg">
+      <label><input type="radio" name="val" value="nessuna"><span>Nessuna</span></label>
+      <label><input type="radio" name="val" value="incompleta"><span>Incompleta</span></label>
+    </span>
+  </div>
+  <div id="mNessuna" class="hide">
+    <h3>Almeno uno di questi?</h3>
+    <label class="chk"><input type="checkbox" class="mn" id="mn1"><span>Età &gt;40 anni</span></label>
+    <label class="chk"><input type="checkbox" class="mn" id="mn2"><span>Dolore toracico o equivalente prima della morte</span></label>
+    <label class="chk"><input type="checkbox" class="mn" id="mn3"><span>Storia di malattia coronarica</span></label>
+    <label class="chk"><input type="checkbox" class="mn" id="mn4"><span>Fibrillazione ventricolare documentata, senza cardiomiopatia o canalopatia note</span></label>
+  </div>
+  <div id="mIncompleta" class="hide">
+    <h3>Almeno uno di questi?</h3>
+    <label class="chk"><input type="checkbox" class="mi" id="mi1"><span>Sintomi di ischemia acuta</span></label>
+    <label class="chk"><input type="checkbox" class="mi" id="mi2"><span>Alterazioni del tratto ST</span></label>
+    <label class="chk"><input type="checkbox" class="mi" id="mi3"><span>Alterazione della cinetica regionale</span></label>
+    <div class="row" style="margin-top:8px">
+      <span class="fl">ECG</span>
+      <span class="seg">
+        <label><input type="radio" name="mste" value="0"><span>ST↑</span></label>
+        <label><input type="radio" name="mste" value="1"><span>senza ST↑</span></label>
+      </span>
+    </div>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <span class="fl">Autopsia o imaging post-mortem</span>
+    <select id="autopsia">
+      <option value="">non eseguiti</option>
+      <option value="pat_occl">patologia coronarica acuta, con occlusione coronarica</option>
+      <option value="pat_no">patologia coronarica acuta, senza occlusione coronarica</option>
+      <option value="neg">nessuna patologia coronarica acuta</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- ═══ SILENTE ═══ -->
+<div id="blkSil" class="hide">
+<div class="stage"><span class="stage-n">2</span><span class="stage-t">Infarto non riconosciuto</span><span class="stage-w">§ 9 · p. 20</span></div>
+<div class="card">
+  <label class="chk"><input type="checkbox" id="sQ"><span>Onde Q patologiche a un ECG di routine</span></label>
+  <label class="chk"><input type="checkbox" id="sImg"><span>Alterazione della cinetica regionale o infarto visti con un imaging eseguito per altro</span></label>
+  <div class="row" style="margin-top:8px">
+    <span class="fl">Conferma con l'imaging</span>
+    <select id="sConf">
+      <option value="">non ancora</option>
+      <option value="si">sì, preferibilmente RM con enhancement tardivo</option>
+      <option value="no">imaging negativo</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- ═══ RISORSE LIMITATE ═══ -->
+<div id="blkRis" class="hide">
+<div class="stage"><span class="stage-n">2</span><span class="stage-t">Senza biomarcatori né imaging</span><span class="stage-w">Box 7 · p. 35</span></div>
+<div class="card">
+  <label class="chk"><input type="checkbox" id="rSint"><span>Sintomi compatibili con ischemia miocardica acuta</span></label>
+  <h3 style="margin-top:8px">E almeno uno di questi:</h3>
+  <label class="chk"><input type="checkbox" id="rEcg"><span>Alterazioni ischemiche <strong>nuove</strong> all'ECG</span></label>
+  <label class="chk"><input type="checkbox" id="rQ"><span>Comparsa di onde Q patologiche</span></label>
+</div>
+</div>
+
+<!-- ═══ TROPONINA, ECG, CRITERI ═══ -->
+<div id="blkClin" class="hide">
+<div class="stage"><span class="stage-n">2</span><span class="stage-t">Troponina ed ECG</span><span class="stage-w">Box 1–2 · p. 8 · Tab. 4</span></div>
+<div class="card">
+  <div class="row">
+    <span class="fl" id="tnLbl">Troponina</span>
+    <select id="tn">
+      <option value="">—</option>
+      <option value="acuto">danno acuto: rise and/or fall con ≥1 valore sopra il 99° percentile per sesso</option>
+      <option value="cronico">elevata e stabile: ≥2 valori sopra il 99° percentile, clinica stabile</option>
+      <option value="no">nessun valore sopra il 99° percentile nei prelievi seriati</option>
+    </select>
+  </div>
+  <p class="why" id="tnProc" style="margin-bottom:8px"></p>
+  <div class="row">
+    <span class="fl">ECG</span>
+    <span class="seg">
+      <label><input type="radio" name="ste" value="0"><span>ST↑ o equivalenti di occlusione</span></label>
+      <label><input type="radio" name="ste" value="1"><span>senza ST↑</span></label>
+    </span>
+  </div>
+</div>
+
+<div class="stage"><span class="stage-n">3</span><span class="stage-t">Criteri clinici ed elettrocardiografici</span><span class="stage-w" id="critW">Box 3–5</span></div>
+<div class="card">
+  <h3>Almeno uno</h3>
+  <label class="chk"><input type="checkbox" class="cr" id="c1"><span>Sintomi compatibili con ischemia miocardica acuta</span></label>
+  <label class="chk"><input type="checkbox" class="cr" id="c2"><span>Alterazioni ischemiche all'ECG nuove, o presunte nuove</span></label>
+  <label class="chk"><input type="checkbox" class="cr" id="c3"><span>Comparsa di onde Q patologiche</span></label>
+  <label class="chk" id="c4row"><input type="checkbox" class="cr" id="c4"><span>Deterioramento clinico improvviso e non spiegato, in sedazione<small>edema polmonare, ipotensione inattesa, tachicardia, aritmia ventricolare</small></span></label>
+  <div id="secProb" class="hide">
+    <h3 style="margin-top:10px">Rendono l'IM secondario probabile</h3>
+    <label class="chk"><input type="checkbox" id="p1"><span>Malattia coronarica nota</span></label>
+    <label class="chk"><input type="checkbox" id="p2"><span>Forte sospetto per l'estensione dell'ischemia all'ECG o per l'entità dell'aumento della troponina</span></label>
+  </div>
+  <div id="procProb" class="hide">
+    <h3 style="margin-top:10px">Rende l'IM procedura-correlato probabile</h3>
+    <label class="chk"><input type="checkbox" id="p3"><span>Biomarcatori più alti che prima della procedura e <strong>ancora in salita</strong> a 6 h e a 24 h<small>per esempio &gt;5 volte l'URL a 6 h dopo un intervento, &gt;35 volte a 24 h dopo la chirurgia</small></span></label>
+  </div>
+</div>
+
+<div class="stage"><span class="stage-n">4</span><span class="stage-t">Angiografia e imaging cardiaco</span><span class="stage-w">Box 3–5 · Fig. 2, 4, 6</span></div>
+<div class="card">
+  <div class="row" id="rigaAngio">
+    <label class="fl" for="angio">Angiografia coronarica</label>
+    <select id="angio">
+      <option value="">non eseguita</option>
+      <optgroup label="patologia coronarica acuta">
+        <option value="1">aterotrombosi</option>
+        <option value="2">dissezione coronarica spontanea (SCAD)</option>
+        <option value="3">embolia coronarica</option>
+        <option value="4">vasospasmo</option>
+        <option value="5">restenosi o recoil &gt;30 giorni dalla procedura</option>
+        <option value="6">trombosi di stent &gt;30 giorni dalla procedura</option>
+        <option value="7">fallimento di un graft &gt;30 giorni dalla procedura</option>
+      </optgroup>
+      <optgroup label="nessuna patologia coronarica acuta">
+        <option value="ostr">CAD ostruttiva: ≥70%, o ≥50% che limita il flusso</option>
+        <option value="nonostr">coronarie non ostruttive o indenni</option>
+      </optgroup>
+    </select>
+  </div>
+  <div class="row hide" id="rigaCompl">
+    <label class="fl" for="compl">Angiografia: complicanza</label>
+    <select id="compl">
+      <option value="">non eseguita</option>
+      <option value="si">sì — occlusione di ramo, dissezione iatrogena, no/slow flow, recoil o restenosi precoce, trombosi di stent, graft, compressione, embolia, occlusione dell'ostio</option>
+      <option value="no">nessuna complicanza coronarica</option>
+    </select>
+  </div>
+  <div class="row">
+    <label class="fl" for="img">Imaging cardiaco</label>
+    <select id="img">
+      <option value="">non eseguito</option>
+      <option value="si">nuova, o presunta nuova, alterazione della cinetica regionale o assenza di miocardio vitale, in pattern ischemico</option>
+      <option value="no">nessuna delle due</option>
+    </select>
+  </div>
+  <p class="why" id="imgProc"></p>
+</div>
+</div>
+
+<!-- ═══ ESITO ═══ -->
+<div class="stage"><span class="stage-n">=</span><span class="stage-t">Esito</span></div>
+<div class="card" id="out">
+  <div class="esito">
+    <div class="big" id="oCat">—</div>
+    <span class="cat kx" id="oLiv">scegli il contesto</span>
+    <span class="codice" id="oCod"></span>
+  </div>
+  <div class="scala" id="oScala"></div>
+  <div id="oNote"></div>
+  <div id="oPassi" style="margin-top:6px"></div>
+</div>
+
+<div class="stage"><span class="stage-n">!</span><span class="stage-t">Limiti</span></div>
+<div class="card"><ul class="limiti" id="limiti"></ul></div>
+
+<div class="foot">
+  <strong>Fonte.</strong> Mills NL, Newby LK, Zaman S, et al., per la Joint ESC/ACC/AHA/WHF Task Force. <em>Fifth Universal Definition of Myocardial Infarction (2026).</em> Eur Heart J 2026. Criteri dei Box 1–5 e 7 (pp. 8, 10, 13, 16, 35), percorsi delle Fig. 2, 4, 6 e 8 (pp. 11, 14, 17, 19) con le loro note, codici della Tab. 4 (p. 13) e del § 18 (p. 35), infarto non riconosciuto (§ 9, p. 20) e angina instabile (§ 10, p. 20). Testo riformulato, nessun passo della fonte riprodotto.<br>
+  <strong>Strumento di studio e di consultazione.</strong> Non è un dispositivo medico validato e non sostituisce il giudizio clinico né la lettura della definizione.
+</div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ═══ DATI ═══════════════════════════════════════════════════════════════
+     Tab. 4, p. 13, e § 18, p. 35: BA41.0 = STEMI (con i reperti ECG di
+     occlusione della Fig. 9), BA41.1 = NSTEMI; sesta cifra 1-9 per la
+     patologia del primario, A secondario, B percutaneo, C chirurgico. */
+  var PAT = { "1": "aterotrombosi", "2": "SCAD", "3": "embolia coronarica", "4": "vasospasmo",
+              "5": "restenosi >30 giorni", "6": "trombosi di stent >30 giorni", "7": "fallimento di graft >30 giorni",
+              "8": "eziologia indeterminata dopo l'imaging coronarico", "9": "eziologia ignota (nessun imaging coronarico)" };
+  var LIV = { escluso: ["escluso", "k9"], considerato: ["considerato", "k1"], probabile: ["probabile", "k3"],
+              confermato: ["confermato", "k2"], presunto: ["presunto", "k3"], applicata: ["diagnosi applicata, incerta", "k3"], nonimf: ["non è infarto", "k9"] };
+
+  /* ═══ FUNZIONI PURE ══════════════════════════════════════════════════ */
+  function cod(ste, x) { return (ste === "" ? "BA41._" : "BA41." + ste) + x; }
+  function nCrit(s) { return (s.c1 ? 1 : 0) + (s.c2 ? 1 : 0) + (s.c3 ? 1 : 0) + (s.ctx === "proc" && s.c4 ? 1 : 0); }
+
+  function primario(s, r) {
+    r.cat = "IM primario";
+    r.scala = ["probabile", "confermato"];
+    if (s.tn === "") { r.liv = null; r.attesa = "manca la troponina"; return r; }
+    if (s.tn !== "acuto") return senzaDanno(s, r);
+    if (nCrit(s) === 0) {
+      r.liv = "nonimf"; r.cat = "danno miocardico acuto";
+      r.note.push(["", "<strong>Danno acuto senza criteri clinici né ECG:</strong> il Box 3 chiede almeno uno fra sintomi, alterazioni ischemiche e onde Q. Cercare la causa del danno fra i meccanismi non ischemici.", "Box 3 p. 10 · Tab. 2 p. 8"]);
+      return r;
+    }
+    r.liv = "probabile";
+    r.cod = cod(s.ste, "9"); r.codNota = "diagnosi di lavoro";
+    if (s.angio && PAT[s.angio] && +s.angio <= 7) {
+      r.liv = "confermato"; r.cod = cod(s.ste, s.angio); r.codNota = PAT[s.angio];
+      r.perche = "patologia coronarica acuta all'angiografia";
+      return r;
+    }
+    if (s.angio === "ostr" || s.angio === "nonostr") {
+      if (s.img === "si") { r.liv = "confermato"; r.cod = cod(s.ste, "8"); r.codNota = PAT["8"]; r.perche = "nessuna patologia acuta, ma nuova alterazione della cinetica o assenza di miocardio vitale"; return r; }
+      if (s.img === "no") { r.liv = "escluso"; r.cod = ""; r.perche = "nessuna patologia coronarica acuta e imaging cardiaco negativo";
+        r.note.push(["info", "Resta da chiarire la causa del danno acuto: con coronarie non ostruttive la RM cardiaca è la metodica di scelta, e più spesso trova miocardite o sindrome di Takotsubo.", "pp. 12–13"]);
+        return r; }
+      r.perche = "nessuna patologia coronarica acuta all'angiografia: serve l'imaging cardiaco";
+      r.passi.push(["→", "<strong>Imaging cardiaco</strong>: una nuova alterazione della cinetica o l'assenza di miocardio vitale in pattern ischemico confermano (eziologia indeterminata, sesta cifra 8); se manca, l'IM è escluso.", "Fig. 2 p. 11"]);
+      if (s.angio === "nonostr") r.passi.push(["·", "È la <strong>diagnosi di lavoro di MINOCA</strong>: RM, idealmente entro 2 settimane.", "Fig. 2 nota e · p. 21"]);
+      return r;
+    }
+    /* angiografia non eseguita */
+    if (s.img === "si") { r.liv = "confermato"; r.cod = cod(s.ste, "9"); r.codNota = PAT["9"]; r.perche = "nuova alterazione della cinetica o assenza di miocardio vitale, senza imaging coronarico";
+      r.passi.push(["→", "Con l'<strong>angiografia</strong> si identifica la patologia acuta e il codice la riporta.", "p. 13"]);
+      return r; }
+    r.perche = "danno acuto con " + nCrit(s) + (nCrit(s) === 1 ? " criterio" : " criteri") + " clinici o ECG";
+    r.passi.push(["→", "<strong>Angiografia coronarica</strong> — con imaging intravascolare o test funzionale se serve — e/o <strong>imaging cardiaco</strong> per confermare.", "Box 3 p. 10 · p. 12"]);
+    r.passi.push(["·", "Dove angiografia e imaging non sono disponibili o non sono appropriati, la diagnosi finale di IM primario si può dare sui soli criteri clinici, ECG e dei biomarcatori, con il codice dell'eziologia ignota.", "Fig. 2 nota d p. 11"]);
+    return r;
+  }
+
+  function secondario(s, r) {
+    r.cat = "IM secondario";
+    r.scala = ["considerato", "probabile", "confermato"];
+    if (s.tn === "") { r.liv = null; r.attesa = "manca la troponina"; return r; }
+    if (s.tn !== "acuto") return senzaDanno(s, r);
+    if (s.angio && +s.angio >= 1 && +s.angio <= 7) {
+      r.cat = "IM primario"; r.scala = ["probabile", "confermato"]; r.liv = "confermato";
+      r.cod = cod(s.ste, s.angio); r.codNota = PAT[s.angio];
+      r.perche = "l'imaging ha trovato una patologia coronarica acuta: la diagnosi diventa IM primario";
+      return r;
+    }
+    if (nCrit(s) === 0) {
+      r.liv = "nonimf"; r.cat = "danno miocardico acuto";
+      r.note.push(["", "Il Box 4 chiede almeno un criterio fra sintomi, alterazioni ischemiche e onde Q: senza, è danno acuto della condizione di base.", "Box 4 p. 13"]);
+      return r;
+    }
+    r.liv = (s.p1 || s.p2) ? "probabile" : "considerato";
+    r.cod = cod(s.ste, "A"); r.codNota = "+ il codice ICD-11 della condizione acuta";
+    if (s.angio === "ostr") { r.liv = "confermato"; r.perche = "CAD ostruttiva senza patologia coronarica acuta"; return r; }
+    if (s.img === "si") { r.liv = "confermato"; r.perche = "nuova alterazione della cinetica o assenza di miocardio vitale"; return r; }
+    if (s.angio === "nonostr" && s.img === "no") {
+      r.liv = "escluso"; r.cod = ""; r.perche = "coronarie non ostruttive e imaging cardiaco negativo";
+      r.note.push(["info", "Resta il <strong>danno miocardico acuto</strong> della condizione di base: se ne cerca la causa.", "Fig. 4 p. 14 · p. 16"]);
+      return r;
+    }
+    r.perche = (r.liv === "probabile" ? "criteri clinici o ECG, con " + (s.p1 ? "CAD nota" : "forte sospetto") : "criteri clinici o ECG in una condizione acuta con squilibrio");
+    r.passi.push(["→", "Si conferma con <strong>CAD ostruttiva</strong> (≥70%, o ≥50% che limita il flusso) senza patologia acuta, oppure con una <strong>nuova alterazione della cinetica</strong> o assenza di miocardio vitale.", "Box 4 p. 13"]);
+    r.passi.push(["·", "Ischemia persistente o ricorrente con l'IM primario nel differenziale → <strong>coronarografia</strong>. Altrimenti l'imaging si rinvia spesso a dopo il trattamento della condizione acuta, anche con TC coronarica.", "p. 16 · Fig. 4 nota c"]);
+    r.passi.push(["·", "Con comorbidità, fragilità avanzata o aspettativa di vita limitata l'imaging può non essere appropriato: la diagnosi resta clinica, e CAD nota o danno che compromette la funzione la rendono più probabile.", "p. 16"]);
+    return r;
+  }
+
+  function procedura(s, r) {
+    if (s.pNonCorr) {
+      r.attesa = "evento indipendente dalla procedura: scegli il contesto spontaneo o secondario";
+      r.note.push(["info", "Nei 30 giorni può esserci un infarto che non dipende dalla procedura: si classifica come primario o secondario secondo il contesto.", "p. 19"]);
+      return r;
+    }
+    if (s.giorni !== null && s.giorni > 30) {
+      var rr = primario(s, r);
+      rr.note.unshift(["info", "<strong>Oltre 30 giorni</strong> un evento coronarico legato a una procedura precedente si considera <strong>IM primario</strong>: restenosi, trombosi di stent e fallimento di graft hanno le seste cifre 5, 6 e 7.", "p. 19 · Tab. 4"]);
+      return rr;
+    }
+    r.cat = "IM procedura-correlato";
+    r.scala = ["considerato", "probabile", "confermato"];
+    if (!s.via) { r.attesa = "scegli la via della procedura"; return r; }
+    if (s.giorni === null) { r.attesa = "mancano i giorni dalla procedura"; return r; }
+    if (s.tn === "") { r.attesa = "manca la troponina"; return r; }
+    if (s.tn !== "acuto") return senzaDanno(s, r);
+    if (!s.pSosp || nCrit(s) === 0) {
+      r.liv = "nonimf"; r.cat = "danno miocardico acuto";
+      r.note.push(["", "Dopo una procedura un certo danno acuto è <strong>ubiquitario</strong>: il Box 5 chiede una complicanza coronarica sospetta <strong>e</strong> almeno un criterio clinico o ECG.", "Box 5 p. 16 · p. 17"]);
+      return r;
+    }
+    r.liv = s.p3 ? "probabile" : "considerato";
+    r.cod = cod(s.ste, s.via); r.codNota = s.via === "B" ? "procedura percutanea" : "chirurgia cardiaca aperta";
+    var ang = s.compl === "si", img = s.img === "si";
+    if (s.pDurante) {
+      if (ang && img) { r.liv = "confermato"; r.perche = "complicanza angiografica e nuova alterazione della cinetica nel territorio: servono entrambe, e ci sono"; return r; }
+      if (s.compl === "si" && s.img === "no") { r.liv = "escluso"; r.cat = "complicanza senza infarto"; r.cod = ""; r.perche = "complicanza angiografica, ma imaging senza nuova alterazione della cinetica"; return r; }
+      if (ang || img) {
+        r.perche = "complicanza insorta durante la procedura, o procedura in corso di IM acuto: " + (ang ? "manca l'imaging" : "manca l'angiografia");
+        r.note.push(["stop", "<strong>Qui una sola prova non basta:</strong> servono l'evidenza angiografica <strong>e</strong> quella dell'imaging.", "Box 5 p. 16"]);
+        return r;
+      }
+    } else {
+      if (ang || img) { r.liv = "confermato"; r.perche = ang ? "complicanza coronarica all'angiografia" : "nuova alterazione della cinetica nel territorio della coronaria"; return r; }
+      if (s.compl === "no" && s.img === "no") { r.liv = "escluso"; r.cat = "complicanza senza infarto"; r.cod = ""; r.perche = "nessuna complicanza angiografica e imaging negativo"; return r; }
+    }
+    r.perche = "complicanza sospetta con danno acuto e criteri clinici o ECG";
+    r.passi.push(["→", "Conferma con l'<strong>angiografia</strong> (complicanza coronarica) " + (s.pDurante ? "<strong>e</strong>" : "o") + " con l'<strong>imaging cardiaco</strong> (nuova alterazione della cinetica nel territorio della coronaria coinvolta).", "Box 5 p. 16"]);
+    r.passi.push(["·", "Nessuna soglia unica di troponina conferma o esclude: la conferma la dà l'imaging.", "p. 17"]);
+    return r;
+  }
+
+  function senzaDanno(s, r) {
+    r.cod = "";
+    if (s.tn === "cronico") {
+      r.liv = "nonimf"; r.cat = "danno miocardico cronico";
+      r.note.push(["info", "Il danno cronico si <strong>considera</strong> con ≥2 valori sopra il 99° percentile in clinica stabile, si <strong>conferma</strong> con una condizione che rimodella il cuore, si <strong>esclude</strong> se l'aumento è spiegato da interferenza analitica o ridotta clearance. Variazione &lt;20% fra le misure: più probabilmente cronico e stabile.", "Box 2 p. 8 · p. 9"]);
+      r.note.push(["", "Chi si presenta giorni dopo l'esordio può avere un pattern che <strong>mima il danno cronico</strong>: distinguere il danno residuo di un infarto recente conta.", "p. 27"]);
+      return r;
+    }
+    r.liv = "escluso"; r.cat = "nessun danno miocardico acuto";
+    if (s.ctx === "spont" && (s.c1 || s.c2)) {
+      r.cat = "angina instabile da considerare";
+      r.cod = "BA40";
+      r.note.push(["info", "Con sintomi nuovi a riposo o per sforzi minimi, o un peggioramento improvviso in una sindrome coronarica cronica, e l'infarto escluso dai prelievi seriati: si considera l'<strong>angina instabile</strong>. È più probabile con ischemia all'ECG, confermata da una patologia coronarica acuta all'angiografia.", "p. 20 · Tab. 4"]);
+    }
+    return r;
+  }
+
+  function classifica(s) {
+    var r = { cat: "—", liv: null, cod: "", codNota: "", perche: "", attesa: "", note: [], passi: [], scala: [] };
+    if (!s.ctx) { r.attesa = "scegli il contesto"; return r; }
+    if (s.ctx === "spont") return primario(s, r);
+    if (s.ctx === "sec") return secondario(s, r);
+    if (s.ctx === "proc") return procedura(s, r);
+    if (s.ctx === "morte") {
+      r.cat = "morte improvvisa";
+      if (s.autopsia === "pat_occl" || s.autopsia === "pat_no") {
+        r.cat = "IM primario"; r.liv = "confermato";
+        r.cod = s.autopsia === "pat_occl" ? "BA41.01–.08" : "BA41.11–.18";
+        r.codNota = s.autopsia === "pat_occl" ? "con occlusione coronarica" : "senza occlusione coronarica";
+        r.perche = "patologia coronarica acuta all'autopsia o all'imaging post-mortem";
+        return r;
+      }
+      if (s.autopsia === "neg") { r.liv = "escluso"; r.cat = "considerare una causa alternativa"; r.perche = "nessuna patologia coronarica acuta post-mortem"; return r; }
+      if (!s.val) { r.attesa = "com'è stato valutato il paziente?"; return r; }
+      if (s.val === "nessuna") {
+        if (!s.mn) { r.liv = "escluso"; r.cat = "considerare una causa alternativa"; r.perche = "nessuno dei quattro elementi"; return r; }
+        r.cat = "IM non specificato"; r.liv = "considerato"; r.cod = "BA41.Z";
+        r.perche = "morte senza valutazione, con elementi che rendono l'IM più probabile";
+      } else {
+        if (!s.mi) { r.liv = "escluso"; r.cat = "considerare una causa alternativa"; r.perche = "nessuno dei tre elementi"; return r; }
+        r.cat = "IM di eziologia ignota"; r.liv = "applicata"; r.cod = s.mste === "" ? "BA41.09 o BA41.19" : cod(s.mste, "9");
+        r.perche = "valutazione incompleta, senza biomarcatori né imaging coronarico";
+      }
+      r.passi.push(["→", "<strong>Considerare autopsia o imaging post-mortem</strong>: confermano la diagnosi e la classificano; senza ECG né indagini post-mortem la diagnosi resta incerta.", "Fig. 8 p. 19"]);
+      return r;
+    }
+    if (s.ctx === "silente") {
+      if (!s.sQ && !s.sImg) { r.attesa = "che cosa è stato trovato?"; return r; }
+      r.cat = "IM non riconosciuto";
+      if (s.sConf === "si") { r.liv = "confermato"; r.cod = "BA50"; r.perche = "reperto confermato dall'imaging"; return r; }
+      if (s.sConf === "no") { r.liv = "escluso"; r.perche = "imaging negativo"; return r; }
+      r.liv = "considerato"; r.cod = "BA50"; r.codNota = "se confermato";
+      r.passi.push(["→", "Le onde Q patologiche hanno <strong>specificità limitata</strong>: la diagnosi si conferma con l'imaging, <strong>preferibilmente RM con enhancement tardivo</strong>.", "p. 20"]);
+      return r;
+    }
+    if (s.ctx === "risorse") {
+      r.cat = "IM";
+      if (s.rSint && (s.rEcg || s.rQ)) { r.liv = "presunto"; r.perche = "sintomi di ischemia acuta con " + (s.rEcg ? "alterazioni ischemiche nuove" : "onde Q patologiche"); return r; }
+      r.attesa = "servono i sintomi e almeno un criterio ECG";
+      return r;
+    }
+    return r;
+  }
+
+  /* ═══ STATO ══════════════════════════════════════════════════════════ */
+  function el(id) { return document.getElementById(id); }
+  function ck(id) { var e = el(id); return !!(e && e.checked); }
+  function num(id) { var e = el(id); if (!e || e.value === "") return null; var v = parseFloat(e.value); return isFinite(v) && v >= 0 ? v : null; }
+  function radio(n) { var e = document.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ""; }
+  function almeno(cls) { var x = document.querySelectorAll("." + cls); for (var i = 0; i < x.length; i++) if (x[i].checked) return true; return false; }
+  function S() {
+    return { ctx: radio("ctx"), via: radio("via"), giorni: num("giorni"), pSosp: ck("pSosp"), pDurante: ck("pDurante"), pNonCorr: ck("pNonCorr"),
+             val: radio("val"), mn: almeno("mn"), mi: almeno("mi"), mste: radio("mste"), autopsia: el("autopsia").value,
+             sQ: ck("sQ"), sImg: ck("sImg"), sConf: el("sConf").value,
+             rSint: ck("rSint"), rEcg: ck("rEcg"), rQ: ck("rQ"),
+             tn: el("tn").value, ste: radio("ste"), c1: ck("c1"), c2: ck("c2"), c3: ck("c3"), c4: ck("c4"),
+             p1: ck("p1"), p2: ck("p2"), p3: ck("p3"), angio: el("angio").value, compl: el("compl").value, img: el("img").value };
+  }
+
+  /* ═══ DISEGNO ════════════════════════════════════════════════════════ */
+  function vedi(id, si) { var e = el(id); e.className = e.className.replace(/\s*hide/g, "") + (si ? "" : " hide"); }
+  function pg(p) { return ' <span class="pg">' + p + "</span>"; }
+  function passo(ico, tx, p) { return '<div class="passo"><span class="ico">' + ico + '</span><span class="tx">' + tx + (p ? pg(p) : "") + "</span></div>"; }
+  function nota(tipo, tx, p) { return '<div class="nota ' + tipo + '">' + tx + (p ? pg(p) : "") + "</div>"; }
+  function chip(id, k, t) { var e = el(id); e.className = "cat " + (k || "kx"); e.innerHTML = t; }
+
+  function disegna() {
+    var s = S();
+    var clin = s.ctx === "spont" || s.ctx === "sec" || s.ctx === "proc";
+    vedi("blkProc", s.ctx === "proc");
+    vedi("blkMorte", s.ctx === "morte");
+    vedi("mNessuna", s.val === "nessuna");
+    vedi("mIncompleta", s.val === "incompleta");
+    vedi("blkSil", s.ctx === "silente");
+    vedi("blkRis", s.ctx === "risorse");
+    vedi("blkClin", clin);
+    vedi("c4row", s.ctx === "proc");
+    vedi("secProb", s.ctx === "sec");
+    vedi("procProb", s.ctx === "proc" && !(s.giorni !== null && s.giorni > 30));
+    var procVero = s.ctx === "proc" && !(s.giorni !== null && s.giorni > 30) && !s.pNonCorr;
+    vedi("rigaAngio", !procVero);
+    vedi("rigaCompl", procVero);
+    el("critW").textContent = s.ctx === "sec" ? "Box 4 · p. 13" : (s.ctx === "proc" ? "Box 5 · p. 16" : "Box 3 · p. 10");
+    el("tnProc").innerHTML = procVero ? "Dopo una procedura il danno acuto è la troponina <strong>in salita</strong>, con almeno un valore sopra il 99° percentile <strong>e</strong> sopra il valore pre-procedurale, se noto." + pg("Fig. 6 nota a, p. 17") : "";
+    el("imgProc").innerHTML = procVero ? "Per l'IM procedura-correlato l'alterazione deve stare nel <strong>territorio della coronaria</strong> in cui è nata la complicanza." + pg("Box 5 p. 16") : "";
+
+    var r = classifica(s);
+    el("oCat").textContent = r.liv === null && r.attesa ? "—" : r.cat;
+    if (r.liv === null) chip("oLiv", null, r.attesa || "—"); else chip("oLiv", LIV[r.liv][1], LIV[r.liv][0]);
+    el("oCod").innerHTML = r.cod ? r.cod + (r.codNota ? ' <span class="why">' + r.codNota + "</span>" : "") : "";
+    var sc = "";
+    for (var i = 0; i < r.scala.length; i++) sc += '<span class="' + (r.liv === r.scala[i] ? "on " + LIV[r.scala[i]][1] : "") + '">' + r.scala[i] + "</span>";
+    el("oScala").innerHTML = sc;
+    var nt = r.perche ? '<p class="why" style="margin-top:8px">' + r.perche + "</p>" : "";
+    for (var j = 0; j < r.note.length; j++) nt += nota(r.note[j][0], r.note[j][1], r.note[j][2]);
+    if (clin && s.ste === "0" && r.liv !== null && r.liv !== "escluso" && r.liv !== "nonimf") nt += nota("info", "Con ST↑ la diagnosi di lavoro di STEMI si pone <strong>senza aspettare i biomarcatori</strong>; per la diagnosi finale il danno acuto serve comunque.", "Fig. 2 note a–b, p. 11");
+    if (clin && s.ste === "" && r.cod) nt += nota("", "Scegli l'ECG: la quinta cifra del codice dice ST↑ (0) o senza ST↑ (1).", "Tab. 4 p. 13");
+    el("oNote").innerHTML = nt;
+    var ps = "";
+    for (var k = 0; k < r.passi.length; k++) ps += passo(r.passi[k][0], r.passi[k][1], r.passi[k][2]);
+    el("oPassi").innerHTML = ps;
+
+    var lim = [];
+    lim.push("La troponina si legge con il <strong>99° percentile per sesso</strong> del saggio in uso; le soglie dei percorsi accelerati servono a smistare, non a definire il danno." + pg("p. 27"));
+    lim.push("Lo strumento non valuta se un reperto ECG è davvero ischemico né se un'alterazione della cinetica è nuova: sono giudizi clinici e d'imaging.");
+    if (s.ctx === "sec") lim.push("Il Box 4 non dà soglie per lo squilibrio fra apporto e domanda: quanto conta l'anemia, l'ipotensione o la tachicardia lo decide il medico.");
+    if (s.ctx === "proc") lim.push("Gli esempi di 5 e 35 volte l'URL del Box 5 sono esempi, non soglie diagnostiche: gli URL dei saggi non sono equivalenti fra loro." + pg("pp. 10, 16"));
+    el("limiti").innerHTML = "<li>" + lim.join("</li><li>") + "</li>";
+
+    chip("barCat", r.liv === null ? null : LIV[r.liv][1], r.liv === null ? "—" : r.cat + " · " + LIV[r.liv][0]);
+    chip("barCod", r.cod ? "k9" : null, r.cod || "—");
+  }
+
+  document.addEventListener("input", disegna);
+  document.addEventListener("change", disegna);
+  el("azzera").addEventListener("click", function () {
+    var ins = document.querySelectorAll("input");
+    for (var i = 0; i < ins.length; i++) {
+      if (ins[i].type === "checkbox" || ins[i].type === "radio") ins[i].checked = false; else ins[i].value = "";
+    }
+    var sel = document.querySelectorAll("select");
+    for (var j = 0; j < sel.length; j++) sel[j].value = "";
+    disegna();
+    window.scrollTo(0, 0);
+  });
+
+  window.UDMI5_MOTORE = { classifica: classifica };
+  disegna();
+})();
+</script>
+<script data-iphone="web">
+// Solo da un indirizzo https, cioe' dalla pagina pubblicata: aperto come file
+// il tool non cerca ne' manifest ne' service worker, che accanto al file non
+// ci sono. Un errore qui non deve fermare niente: e' un di piu'.
+(function(){
+if(location.protocol!=="https:") return;
+try{
+  var t=document.getElementsByTagName("head")[0];
+  var m=document.createElement("link"); m.rel="manifest"; m.href="manifest.webmanifest";
+  var i=document.createElement("link"); i.rel="apple-touch-icon"; i.href="icona-180.png";
+  t.appendChild(m); t.appendChild(i);
+  if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js")["catch"](function(){});
+}catch(e){}
+})();
+</script>
+<script data-iphone="fine">document.documentElement.className+=" motore-ok";</script>
+</body>
+</html>
